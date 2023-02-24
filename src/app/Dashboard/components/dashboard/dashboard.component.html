@@ -1,0 +1,55 @@
+<div style="overflow-y: hidden;">
+
+    <div id="mySidebar" class="sidebar" style="overflow-y: hidden;"  >
+     <div class="row" style="margin-bottom: 40px;" > 
+      <div class="col-11">
+        <div class="row" style="margin-top: 20px;margin-bottom: 20px;justify-content: center;">
+          <img src="assets/logo.svg"  style="width: 200px;" alt="">
+        </div>
+      </div>
+        <div class="col-1">
+          <a class="closebtn" style="cursor: pointer;"   (click)="closeNav()">×</a>
+        </div>
+       
+    </div>
+  
+      <div id="menu"  *ngFor="let region of navbarData" >
+        <div class="menu-item text-color" style="margin-top: 20px;" [class]="getClassCss(region.label)"
+          (click)="activarRegion(region.label)" >
+          <a [routerLink]="region.routeLink" ><span class="{{region.icon}}"></span> {{region.label}}</a>
+        </div>
+        
+      </div>
+     
+    </div>
+   
+
+
+    <div id="main" class="header-cp"style="margin-right: 0;" >
+  
+      <app-navbar [nombres] ></app-navbar>
+    
+      
+      
+    </div>
+    <div id="mains" style="margin-right: 0;" class="row" >
+      <h3 style="color:#2c5569">{{formulario}}</h3>
+      <div class="col">
+
+      </div>
+      
+
+  </div>
+  <div id="mains2"style="margin-right: 0;" class="row" >
+    <div class="container-fluid">
+     
+        <router-outlet ></router-outlet>
+   
+    </div>
+
+  </div>
+    
+  </div>
+  
+
+    
