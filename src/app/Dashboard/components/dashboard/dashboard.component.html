@@ -13,10 +13,17 @@
        
     </div>
   
-      <div id="menu"  *ngFor="let region of navbarData" >
-        <div class="menu-item text-color" style="margin-top: 20px;" [class]="getClassCss(region.label)"
+      <div id="menu"  class="tooltips" *ngFor="let region of navbarData" >
+        <div class=" menu-item text-color "  style="margin-top: 20px;" [class]="getClassCss(region.label)"
           (click)="activarRegion(region.label)" >
-          <a [routerLink]="region.routeLink" ><span class="{{region.icon}}"></span> {{region.label}}</a>
+          <a style="cursor: pointer;" class="" ><span class="{{region.icon}}"></span> {{region.label}}</a>
+      
+            <span class="tooltiptexts"  style="padding: 10px;" >
+              <button [routerLink]="regions.routeLink"  *ngFor="let regions of region.children" style="margin-top: 10px;" class="form-control form-control-cd">{{regions.label}}</button>
+              
+            </span>
+         
+          
         </div>
         
       </div>

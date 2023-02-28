@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,141 +9,58 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
 
   regionActiva:string= 'usuarios';
+  regionActivaChild:string= 'Requerimientos';
   filterBar:boolean=false;
   decode:any;
   nombres:string="";
   formulario:string='';
-  menuSidebar = [
-    {
-      link_name: "Dashboard",
-      link: "/dashboard",
-      icon: "bx bx-grid-alt",
-      sub_menu: []
-    }, {
-      link_name: "Category",
-      link: null,
-      icon: "bx bx-collection",
-      sub_menu: [
-        {
-          link_name: "HTML & CSS",
-          link: "/html-n-css",
-        }, {
-          link_name: "JavaScript",
-          link: "/javascript",
-        }, {
-          link_name: "PHP & MySQL",
-          link: "/php-n-mysql",
-        }
-      ]
-    }, {
-      link_name: "Posts",
-      link: null,
-      icon: "bx bx-book-alt",
-      sub_menu: [
-        {
-          link_name: "Web Design",
-          link: "/posts/web-design",
-        }, {
-          link_name: "Login Form",
-          link: "/posts/login-form",
-        }, {
-          link_name: "Card Design",
-          link: "/posts/card-design",
-        }
-      ]
-    }, {
-      link_name: "Analytics",
-      link: "/analytics",
-      icon: "bx bx-pie-chart-alt-2",
-      sub_menu: []
-    }, {
-      link_name: "Chart",
-      link: "/chart",
-      icon: "bx bx-line-chart",
-      sub_menu: []
-    }, {
-      link_name: "Plugins",
-      link: null,
-      icon: "bx bx-plug",
-      sub_menu: [
-        {
-          link_name: "UI Face",
-          link: "/ui-face",
-        }, {
-          link_name: "Pigments",
-          link: "/pigments",
-        }, {
-          link_name: "Box Icons",
-          link: "/box-icons",
-        }
-      ]
-    }, {
-      link_name: "Explore",
-      link: "/explore",
-      icon: "bx bx-compass",
-      sub_menu: []
-    }, {
-      link_name: "History",
-      link: "/history",
-      icon: "bx bx-history",
-      sub_menu: []
-    }, {
-      link_name: "Setting",
-      link: "/setting",
-      icon: "bx bx-cog",
-      sub_menu: []
-    }
-  ];
+  
   navbarData = [
     {
         routeLink: 'usuarios',
         icon: 'fa fa-user',
         label: 'Usuarios',
-        collapse: '#Usuarios'
+        collapse: '#Usuarios',
+        children:[
+          {
+            routeLink: 'usuarios',
+            icon: 'fa fa-user',
+            label: 'Requerimientos',
+          },
+          {
+            routeLink: 'empresas',
+            icon: 'fa fa-user',
+            label: 'Propuestas',
+          }
+          
+        ]        
     },
     {
         routeLink: 'empresas',
         icon: 'fa fa-building',
-        label: 'Sedes',
-        collapse: '#Sedes'
-    },
-    {
-        routeLink: 'empresas',
-        icon: 'fa fa-address-card-o',
-        label: 'Especialidades',
-        collapse: '#Especialidades'
-    },
-    {
-      routeLink: 'empresas',
-      icon: 'fa fa-cog',
-      label: 'Roles',
-      collapse: '#Roles'
-    },
-    {
-      routeLink: 'empresas',
-      icon: 'fa fa-user-md',
-      label: 'Doctores',
-      collapse: '#Doctores'
-    },
-    {
-      routeLink: 'empresas',
-      icon: 'fa fa-user',
-      label: 'Pacientes',
-      collapse: '#Pacientes'
-    },
-    {
-      routeLink: 'empresas',
-      icon: 'fa fa-clock-o',
-      label: 'Citas',
-      collapse: '#Citas'
+        label: 'Empresas',
+        collapse: '#Sedes',
+        children:[
+          {
+            routeLink: 'empresas',
+            icon: 'fa fa-user',
+            label: 'Tareas',
+          },
+          {
+            routeLink: 'usuarios',
+            icon: 'fa fa-user',
+            label: 'Roles',
+          }
+          
+        ]  
     }
   ];
-  
+  constructor(private router:Router){}
   ngOnInit(){
     this.openNav();
     this.activarRegion("Usuarios");
+    this.router.navigate(['/home/usuarios'])
     
-   
     
     }
     showSubmenu(itemEl: HTMLElement) {
@@ -165,9 +83,17 @@ export class DashboardComponent {
   getClassCss(region: string){
     return (region ===this.regionActiva)? 'click-color a': ''
   }
-  activarRegion(region:string){
+  getClassBtn(region: string){
     
+    return (region ===this.regionActivaChild)? 'click-color button': ''
+  }
+  activarRegion(region:string){
     this.regionActiva = region;
+    this.formulario = region;
+    //TODO: hacer el llamado al servicio
+  }
+  activarRegionBtn(region:string){
+    this.regionActivaChild =region;
     this.formulario = region;
     //TODO: hacer el llamado al servicio
   }

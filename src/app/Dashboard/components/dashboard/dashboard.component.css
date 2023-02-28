@@ -8,6 +8,44 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+
+/*GGGG*/
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  display: block;
+}
+
+.tooltips .tooltiptexts {
+  
+  visibility: hidden;
+  width: 200px;
+  background-color: white;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  border: 1px solid #00A1DF;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 99999;
+  display: block;
+}
+
+.tooltips:active .tooltiptexts {
+  visibility: visible;
+  margin-left: 200px;
+  z-index: 99999;
+  position:fixed;
+  left: calc(2% - 25px)
+}
+
+/*GGGG*/
+
 .sidebar{
   position: fixed;
   top: 0;
@@ -351,7 +389,14 @@
     background: #00A1DF;
     color: white!important;
   }
-
+  .click-colorn button{
+    background: #00A1DF;
+    color: white!important;
+  }
+  .form-control-cd:focus{
+    background-color: #00A1DF;
+    color: white;
+  }
   /* Sidenav */
 
   
